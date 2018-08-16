@@ -1,0 +1,94 @@
+#define left_speed_pin 11
+#define right_speed_pin 10
+#define left_speed 200
+#define right_speed 200
+char bl;
+
+void setup() {
+for (int i=2;i<6;i++)
+{
+pinMode(i,OUTPUT);
+}
+pinMode(left_speed,OUTPUT);
+pinMode(right_speed,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  while(Serial.available()>0)
+  {
+  bl = Serial.read();
+  Serial.println(bl);
+  }
+if(bl== 'S')
+{
+  stop();
+  }
+  else if(bl == 'F')
+  {
+    forward();
+    }
+    else if(b1=='B')
+    {
+      back();
+    }
+    else if(b1=='L')
+    {
+      left();
+    }
+    else if(b1=='R')
+    {
+      right();
+    }
+}
+
+void stop()
+{
+  analogWrite(left_speed_pin,0);
+  analogWrite(right_speed_pin,0);
+  digitalWrite(2,LOW);
+  digitalWrite(3,LOW);
+  digitalWrite(4,LOW);
+  digitalWrite(5,LOW);
+  }
+
+
+void forward()
+{
+  analogWrite(left_speed_pin,left_speed);
+  analogWrite(right_speed_pin,right_speed);
+  digitalWrite(2,LOW);
+  digitalWrite(3,HIGH);
+  digitalWrite(4,LOW);
+  digitalWrite(5,HIGH);
+  }
+
+void back()
+{
+  analogWrite(left_speed_pin,left_speed);
+  analogWrite(right_speed_pin,right_speed);
+  digitalWrite(2,HIGH);
+  digitalWrite(3,LOW);
+  digitalWrite(4,HIGH);
+  digitalWrite(5,LOW);
+  }
+
+void left()
+{
+  analogWrite(left_speed_pin,left_speed);
+  analogWrite(right_speed_pin,right_speed);
+  digitalWrite(2,LOW);
+  digitalWrite(3,HIGH);
+  digitalWrite(4,HIGH);
+  digitalWrite(5,LOW);
+  }
+
+void right()
+{
+  analogWrite(left_speed_pin,left_speed);
+  analogWrite(right_speed_pin,right_speed);
+  digitalWrite(2,HIGH);
+  digitalWrite(3,LOW);
+  digitalWrite(4,LOW);
+  digitalWrite(5,HIGH);
+  }
